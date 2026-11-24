@@ -5,44 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tzi Tzi Labs | Indie Game Studio</title>
     <meta name="description" content="Tzi Tzi Labs is an indie game studio focused on experimentation, creativity, and interactive experiences.">
-    
+
     <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
     <meta property="og:title" content="Tzi Tzi Labs | Indie Game Studio">
     <meta property="og:description" content="Discover the experimental and creative games from Tzi Tzi Labs.">
-    <meta property="og:image" content="assets/logo.png">
-    <meta property="og:url" content="https://tzitzilabs.com">
-    
+    <meta property="og:image" content="https://tzitzilabs.github.io/assets/logo.png">
+    <meta property="og:url" content="https://tzitzilabs.github.io/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@TziTziLabs">
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/favicon.png">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+    <!-- Accessibility Skip Link & Live Announcer -->
+    <a href="#main-content" class="skip-link" data-i18n="skip_to_content">Skip to main content</a>
+    <div id="a11y-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Main Navigation">
         <div class="nav-container">
-            <a href="#hero" class="nav-logo">
-                <img src="assets/logo.png" alt="Tzi Tzi Labs Logo" id="nav-logo-img">
+            <a href="#hero" class="nav-logo" aria-label="Tzi Tzi Labs Home">
+                <img src="assets/logo.png" alt="Tzi Tzi Labs Logo" id="nav-logo-img" width="44" height="44">
             </a>
-            
+
             <div class="nav-controls">
-                <div class="nav-links">
+                <div class="nav-links" id="nav-links">
                     <a href="#about" data-i18n="nav_about">About</a>
                     <a href="#games" data-i18n="nav_games">Games</a>
                     <a href="#community" data-i18n="nav_community">Community</a>
+                    <button type="button" class="nav-link-btn" data-open-metrics data-i18n="nav_metrics">Metrics</button>
                 </div>
-                
+
                 <div class="selectors">
+                    <!-- Accessibility Options Popover -->
+                    <div class="a11y-wrapper">
+                        <button type="button" id="a11y-toggle" class="icon-btn" aria-label="Accessibility options" data-i18n-aria="a11y_btn_label" aria-expanded="false" aria-controls="a11y-panel" title="Accessibility">
+                            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                                <path fill="currentColor" d="M12 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/>
+                            </svg>
+                        </button>
+
+                        <div id="a11y-panel" class="a11y-panel" role="dialog" aria-labelledby="a11y-panel-heading" hidden>
+                            <h3 id="a11y-panel-heading" class="a11y-panel-title" data-i18n="a11y_title">Accessibility</h3>
+
+                            <div class="a11y-group">
+                                <span class="a11y-label" data-i18n="a11y_font_size">Text Size</span>
+                                <div class="a11y-font-btns" role="group" aria-label="Text Size">
+                                    <button type="button" class="a11y-font-btn active" data-font-size="100" aria-pressed="true">100%</button>
+                                    <button type="button" class="a11y-font-btn" data-font-size="115" aria-pressed="false">115%</button>
+                                    <button type="button" class="a11y-font-btn" data-font-size="130" aria-pressed="false">130%</button>
+                                </div>
+                            </div>
+
+                            <label class="a11y-toggle-row" for="a11y-high-contrast">
+                                <span data-i18n="a11y_high_contrast">High Contrast</span>
+                                <input type="checkbox" id="a11y-high-contrast">
+                            </label>
+
+                            <label class="a11y-toggle-row" for="a11y-readable-font">
+                                <span data-i18n="a11y_readable_font">Readable Font (Sans-serif)</span>
+                                <input type="checkbox" id="a11y-readable-font">
+                            </label>
+
+                            <label class="a11y-toggle-row" for="a11y-underline-links">
+                                <span data-i18n="a11y_underline_links">Underline Links</span>
+                                <input type="checkbox" id="a11y-underline-links">
+                            </label>
+
+                            <label class="a11y-toggle-row" for="a11y-reduce-motion">
+                                <span data-i18n="a11y_reduce_motion">Reduce Animations</span>
+                                <input type="checkbox" id="a11y-reduce-motion">
+                            </label>
+
+                            <button type="button" id="a11y-reset-btn" class="a11y-reset-btn" data-i18n="a11y_reset">Reset Settings</button>
+                        </div>
+                    </div>
+
                     <!-- Theme Selector -->
-                    <button id="theme-toggle" aria-label="Toggle Theme">
-                        <svg id="icon-moon" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>
-                        <svg id="icon-sun" viewBox="0 0 24 24" width="20" height="20" style="display:none;"><path fill="currentColor" d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-5a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm0 16a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1zM4 11a1 1 0 1 1 0 2H2a1 1 0 1 1 0-2h2zm16 0a1 1 0 1 1 0 2h-2a1 1 0 1 1 0-2h2zM5.64 5.64a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 1 1-1.41 1.41L5.64 7.05a1 1 0 0 1 0-1.41zm12.02 12.02a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 1 1-1.41 1.41l-1.42-1.42a1 1 0 0 1 0-1.41zM5.64 18.36a1 1 0 0 1-1.41-1.41l1.42-1.42a1 1 0 1 1 1.41 1.41l-1.42 1.42zm12.02-12.02a1 1 0 0 1-1.41-1.41l1.42-1.42a1 1 0 1 1 1.41 1.41l-1.42 1.42z"/></svg>
+                    <button type="button" id="theme-toggle" class="icon-btn" aria-label="Toggle Theme" aria-pressed="true" title="Toggle Theme">
+                        <svg id="icon-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>
+                        <svg id="icon-sun" viewBox="0 0 24 24" width="20" height="20" style="display:none;" aria-hidden="true"><path fill="currentColor" d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-5a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm0 16a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1zM4 11a1 1 0 1 1 0 2H2a1 1 0 1 1 0-2h2zm16 0a1 1 0 1 1 0 2h-2a1 1 0 1 1 0-2h2zM5.64 5.64a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 1 1-1.41 1.41L5.64 7.05a1 1 0 0 1 0-1.41zm12.02 12.02a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 1 1-1.41 1.41l-1.42-1.42a1 1 0 0 1 0-1.41zM5.64 18.36a1 1 0 0 1-1.41-1.41l1.42-1.42a1 1 0 1 1 1.41 1.41l-1.42 1.42zm12.02-12.02a1 1 0 0 1-1.41-1.41l1.42-1.42a1 1 0 1 1 1.41 1.41l-1.42 1.42z"/></svg>
                     </button>
 
                     <!-- Language Selector -->
@@ -55,99 +107,182 @@
                         <option value="he">עברית</option>
                     </select>
                 </div>
-                
+
                 <!-- Mobile Menu Toggle -->
-                <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+                <button type="button" class="mobile-menu-btn" aria-label="Toggle Menu" aria-expanded="false" aria-controls="nav-links">☰</button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header id="hero" class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1 data-i18n="hero_title">TZI TZI LABS</h1>
-                <p data-i18n="hero_subtitle">Experimental indie games crafted with passion and creativity.</p>
-                <a href="#games" class="btn btn-primary" data-i18n="hero_btn">Discover Our Games</a>
-                <div class="hero-socials">
-                    <a href="https://x.com/TziTziLabs" target="_blank" rel="noopener">X</a>
-                    <a href="https://tzitzilabs.itch.io/" target="_blank" rel="noopener">itch.io</a>
-                    <a href="https://www.instagram.com/tzitzilabs/" target="_blank" rel="noopener">Instagram</a>
+    <!-- Main Content Landmark -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <header id="hero" class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 data-i18n="hero_title">TZI TZI LABS</h1>
+                    <p data-i18n="hero_subtitle">Experimental indie games crafted with passion and creativity.</p>
+                    <a href="#games" class="btn btn-primary" data-i18n="hero_btn" data-track="hero_cta">Discover Our Games</a>
+                    <div class="hero-socials" aria-label="Social Media Links">
+                        <a href="https://x.com/TziTziLabs" target="_blank" rel="noopener noreferrer" data-track="x">X</a>
+                        <a href="https://tzitzilabs.itch.io/" target="_blank" rel="noopener noreferrer" data-track="itch">itch.io</a>
+                        <a href="https://www.instagram.com/tzitzilabs/" target="_blank" rel="noopener noreferrer" data-track="instagram">Instagram</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="sketch-placeholder">
+                        <img src="assets/hero-bg.png" alt="Rooster and Sun Sketch emblem of Tzi Tzi Labs" id="hero-sketch" width="1185" height="500">
+                    </div>
                 </div>
             </div>
-            <div class="hero-image">
-                <div class="sketch-placeholder">
-                    <img src="assets/hero-bg.png" alt="Rooster and Sun Sketch" id="hero-sketch">
+        </header>
+
+        <!-- About Section -->
+        <section id="about" class="section" aria-labelledby="about-heading">
+            <div class="container">
+                <h2 id="about-heading" class="section-title" data-i18n="about_title">About Us</h2>
+                <div class="about-content">
+                    <p data-i18n="about_desc1">Tzi Tzi Labs is an independent game studio dedicated to the creation and development of video games. We are driven by experimentation, creativity, and a passion for crafting unique interactive experiences.</p>
+                    <p data-i18n="about_desc2">We believe in pushing boundaries and exploring new ideas. Our identity as indie developers allows us to take risks and create games that feel personal, original, and memorable.</p>
                 </div>
             </div>
-        </div>
-    </header>
+        </section>
 
-    <!-- About Section -->
-    <section id="about" class="section">
-        <div class="container">
-            <h2 class="section-title" data-i18n="about_title">About Us</h2>
-            <div class="about-content">
-                <p data-i18n="about_desc1">Tzi Tzi Labs is an independent game studio dedicated to the creation and development of video games. We are driven by experimentation, creativity, and a passion for crafting unique interactive experiences.</p>
-                <p data-i18n="about_desc2">We believe in pushing boundaries and exploring new ideas. Our identity as indie developers allows us to take risks and create games that feel personal, original, and memorable.</p>
-            </div>
-        </div>
-    </section>
+        <!-- Games Section (Coming Soon) -->
+        <section id="games" class="section bg-alt" aria-labelledby="games-heading">
+            <div class="container">
+                <h2 id="games-heading" class="section-title" data-i18n="games_title">Our Games</h2>
 
-    <!-- Games Section (Coming Soon) -->
-    <section id="games" class="section bg-alt">
-        <div class="container">
-            <h2 class="section-title" data-i18n="games_title">Our Games</h2>
-            
-            <div class="coming-soon-container">
-                <h3 class="coming-soon-text" data-i18n="games_coming_soon_main">Coming Soon</h3>
-                <p class="coming-soon-desc" data-i18n="games_coming_soon_desc">We are working hard on our first titles. Stay tuned for updates!</p>
-            </div>
+                <div class="coming-soon-container">
+                    <h3 class="coming-soon-text" data-i18n="games_coming_soon_main">Coming Soon</h3>
+                    <p class="coming-soon-desc" data-i18n="games_coming_soon_desc">We are working hard on our first titles. Stay tuned for updates!</p>
+                </div>
 
-            <div class="games-cta">
-                <a href="https://tzitzilabs.itch.io/" target="_blank" class="btn btn-primary" data-i18n="games_all_btn">Visit our itch.io Page</a>
+                <div class="games-cta">
+                    <a href="https://tzitzilabs.itch.io/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="games_all_btn" data-track="itch">Visit our itch.io Page</a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Community Section -->
-    <section id="community" class="section">
-        <div class="container">
-            <h2 class="section-title" data-i18n="community_title">Community</h2>
-            <p class="community-desc" data-i18n="community_desc">Join us on our journey. Follow our projects, discover news, and accompany the growth of the studio.</p>
-            <div class="social-links-grid">
-                <a href="https://x.com/TziTziLabs" target="_blank" class="social-card">
-                    <h3>X (Twitter)</h3>
-                    <p data-i18n="social_x">Follow for updates</p>
-                </a>
-                <a href="https://www.instagram.com/tzitzilabs/" target="_blank" class="social-card">
-                    <h3>Instagram</h3>
-                    <p data-i18n="social_ig">Behind the scenes</p>
-                </a>
-                <a href="https://tzitzilabs.itch.io/" target="_blank" class="social-card">
-                    <h3>itch.io</h3>
-                    <p data-i18n="social_itch">Play our games</p>
-                </a>
+        <!-- Community Section -->
+        <section id="community" class="section" aria-labelledby="community-heading">
+            <div class="container">
+                <h2 id="community-heading" class="section-title" data-i18n="community_title">Community</h2>
+                <p class="community-desc" data-i18n="community_desc">Join us on our journey. Follow our projects, discover news, and accompany the growth of the studio.</p>
+                <div class="social-links-grid">
+                    <a href="https://x.com/TziTziLabs" target="_blank" rel="noopener noreferrer" class="social-card" data-track="x">
+                        <h3>X (Twitter)</h3>
+                        <p data-i18n="social_x">Follow for updates</p>
+                    </a>
+                    <a href="https://www.instagram.com/tzitzilabs/" target="_blank" rel="noopener noreferrer" class="social-card" data-track="instagram">
+                        <h3>Instagram</h3>
+                        <p data-i18n="social_ig">Behind the scenes</p>
+                    </a>
+                    <a href="https://tzitzilabs.itch.io/" target="_blank" rel="noopener noreferrer" class="social-card" data-track="itch">
+                        <h3>itch.io</h3>
+                        <p data-i18n="social_itch">Play our games</p>
+                    </a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer>
         <div class="container footer-content">
             <div class="footer-brand">
-                <img src="assets/logo.png" alt="Tzi Tzi Labs" class="footer-logo">
+                <img src="assets/logo.png" alt="Tzi Tzi Labs" class="footer-logo" width="36" height="36" loading="lazy">
                 <p>&copy; <span id="year"></span> Tzi Tzi Labs. <span data-i18n="footer_rights">All rights reserved.</span></p>
             </div>
             <div class="footer-links">
-                <a href="https://x.com/TziTziLabs" target="_blank">X</a>
-                <a href="https://tzitzilabs.itch.io/" target="_blank">itch.io</a>
-                <a href="https://www.instagram.com/tzitzilabs/" target="_blank">Instagram</a>
+                <a href="https://x.com/TziTziLabs" target="_blank" rel="noopener noreferrer" data-track="x">X</a>
+                <a href="https://tzitzilabs.itch.io/" target="_blank" rel="noopener noreferrer" data-track="itch">itch.io</a>
+                <a href="https://www.instagram.com/tzitzilabs/" target="_blank" rel="noopener noreferrer" data-track="instagram">Instagram</a>
+                <button type="button" class="footer-metric-btn" data-open-metrics>📊 <span data-i18n="nav_metrics">Metrics</span></button>
             </div>
         </div>
     </footer>
 
+    <!-- Metrics & Web Vitals Modal -->
+    <div id="metrics-modal" class="metrics-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="metrics-modal-title" aria-hidden="true" hidden>
+        <div class="metrics-dialog">
+            <div class="metrics-header">
+                <div>
+                    <h2 id="metrics-modal-title" data-i18n="metrics_title">Site Metrics &amp; Web Vitals</h2>
+                    <p data-i18n="metrics_subtitle">Real-time performance, engagement, and conversion telemetry.</p>
+                </div>
+                <button type="button" id="metrics-close-btn" class="icon-btn" aria-label="Close" data-i18n-aria="metrics_close">✕</button>
+            </div>
+
+            <h3 class="metrics-section-heading" data-i18n="metrics_perf_title">Performance (Web Vitals)</h3>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="metric-value" id="metric-fcp">--</span>
+                    <span class="metric-label">FCP (First Paint)</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value" id="metric-lcp">--</span>
+                    <span class="metric-label">LCP (Largest Paint)</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value" id="metric-cls">0.000</span>
+                    <span class="metric-label">CLS (Layout Shift)</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value" id="metric-dom">--</span>
+                    <span class="metric-label" data-i18n="metrics_dom_load">DOM Load</span>
+                </div>
+            </div>
+
+            <h3 class="metrics-section-heading" data-i18n="metrics_engagement_title">Engagement &amp; Session</h3>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="metric-value" id="metric-pageviews">1</span>
+                    <span class="metric-label" data-i18n="metrics_pageviews">Total Page Views</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value" id="metric-time">0s</span>
+                    <span class="metric-label" data-i18n="metrics_time_on_page">Active Time</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value" id="metric-scroll">0%</span>
+                    <span class="metric-label" data-i18n="metrics_scroll_depth">Max Scroll Depth</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value" id="metric-sections">1 / 4</span>
+                    <span class="metric-label" data-i18n="metrics_sections_seen">Sections Viewed</span>
+                </div>
+            </div>
+
+            <h3 class="metrics-section-heading" data-i18n="metrics_clicks_title">CTA &amp; Social Clicks</h3>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="metric-value" id="metric-click-hero">0</span>
+                    <span class="metric-label" data-i18n="metrics_click_hero">Hero CTA (Games)</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value" id="metric-click-itch">0</span>
+                    <span class="metric-label" data-i18n="metrics_click_itch">itch.io Clicks</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value" id="metric-click-x">0</span>
+                    <span class="metric-label" data-i18n="metrics_click_x">X (Twitter) Clicks</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value" id="metric-click-ig">0</span>
+                    <span class="metric-label" data-i18n="metrics_click_ig">Instagram Clicks</span>
+                </div>
+            </div>
+
+            <div class="metrics-actions">
+                <button type="button" id="metrics-reset-btn" class="btn btn-sm" data-i18n="metrics_reset">Clear Data</button>
+                <button type="button" id="metrics-export-btn" class="btn btn-primary btn-sm" data-i18n="metrics_export">Export JSON</button>
+            </div>
+        </div>
+    </div>
+
     <script src="js/translations.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/metrics.js"></script>
 </body>
 </html>
